@@ -2,7 +2,12 @@ import { reactive } from 'vue';
 
 
 
+
 export const store = reactive({
-    message: 'hello world',
+
+    textQuery: '',
+    movie: {},
+    tv: {},
+    pushButton: false
     
 })

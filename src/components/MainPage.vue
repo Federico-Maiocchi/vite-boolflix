@@ -1,12 +1,17 @@
 <script>
 import CardsMain from './CardsMain.vue';
+import { store } from '../store'
 
 
 
 export default {
 
     data() {
-        return {};
+        return {
+            store: store,
+
+           
+        };
     },
 
     methods: {
@@ -15,19 +20,25 @@ export default {
 
     components: { 
         CardsMain 
+    },
+
+    mounted() {
+        console.log(this.movies)
     }
 }
 
-
+   
 </script>
 
 <template>
   <div class="main-page">
     <div class="container-small">
         <div class="row">
-            <div v-for="card in 8" class="col-3">
-                <CardsMain />
-            </div>
+            <CardsMain 
+            v-for="movie in store.movie"
+            :itemMovie="movie" 
+             
+            />
         </div>
     </div>
   </div>
@@ -43,15 +54,10 @@ export default {
         max-width: 1200px;
         margin: 0 auto;
         padding-top: 50px;
+        height: 100%;
 
         .row {
-            
-            .col-3 {
-                padding: 10px;
-            }
-            // .col-4 {
-            //     padding: 10px;
-            // }
+            height: 100%;
         }
     }
 }

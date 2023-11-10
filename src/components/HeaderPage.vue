@@ -1,12 +1,14 @@
 <script>
-
+import { store } from '../store';
 
 export default {
     emits:['search'],
 
   data() {
     return {
-        
+        store:store,
+
+        text: '',
     }
   },
 
@@ -29,7 +31,11 @@ export default {
                     <h2>Boolflix</h2>
                 </div>
                 <div>
-                    <input class="bar-search" type="text" placeholder="cerca un film o una serie tv">
+                    <input 
+                        class="bar-search" 
+                        type="text" 
+                        placeholder="cerca un film o una serie tv"
+                        v-model="store.textQuery">
                     <button @click="upSearch" class="btn-search">Cerca</button>
                 </div>  
             </div>
@@ -78,5 +84,8 @@ export default {
     }
 }
 
+.color-white {
+    color: white;
+}
 
 </style>

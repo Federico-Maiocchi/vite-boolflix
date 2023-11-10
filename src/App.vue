@@ -2,38 +2,49 @@
 import HeaderPage from './components/HeaderPage.vue';
 import MainPage from './components/MainPage.vue'
 import axios from 'axios'
+import { store } from './store'
 
 export default {
 
-data() {
-  return {
-    API_KEY: '5e3ea58eab7f4c3d273363cc5f67ced4',
-    query: 'harry potter e la pietra filosofale'
-  }
-},
+  data() {
+    return {
 
-components: {
-    HeaderPage,
-    MainPage
-},
-created() {
-  
+      API_KEY: '5e3ea58eab7f4c3d273363cc5f67ced4',
+      store: store,
 
-},
+    }
+  },
 
-methods: {
-  searchApi() {
-    console.log('click button')
-    axios.get('https://api.themoviedb.org/3/search/movie',{
-      params : {
-        api_key: this.API_KEY,
-        query: this.query
-      }
-    }).then(res => {
-      console.log(res.data.results)
-    })
+  components: {
+      HeaderPage,
+      MainPage
+  },
+  created() {
+    
 
-  }
+  },
+
+  methods: {
+    searchApi() {
+      console.log('click button')
+      axios.get('https://api.themoviedb.org/3/search/movie',{
+        params : {
+          api_key: this.API_KEY,
+          query: this.store.textQuery
+        }
+      }).then(res => {
+        // console.log(res.data.results)
+        const objMovie = res.data.results
+
+        this.store.movie = objMovie
+        console.log(this.store.movie)
+
+        this.store.pushButton = true
+
+      })
+
+    }
+
 },
 
 mounted() {
