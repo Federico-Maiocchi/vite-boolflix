@@ -2,6 +2,8 @@
 
 
 export default {
+    emits:['search'],
+
   data() {
     return {
         
@@ -9,6 +11,9 @@ export default {
   },
 
   methods: {
+    upSearch() {
+        this.$emit('search')
+    }
     
   }
 
@@ -25,7 +30,7 @@ export default {
                 </div>
                 <div>
                     <input class="bar-search" type="text" placeholder="cerca un film o una serie tv">
-                    <button class="btn-search">Cerca</button>
+                    <button @click="upSearch" class="btn-search">Cerca</button>
                 </div>  
             </div>
         </div>

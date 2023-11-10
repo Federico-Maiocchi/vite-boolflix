@@ -20,7 +20,12 @@ export default {
 
 <template>
   <div class="card">
-    <div>card</div>
+    <ul>
+        <li>Titolo</li>
+        <li>Titolo Originale</li>
+        <li>Lingua</li>
+        <li>Voto</li>
+    </ul>
   </div>
   
 </template>
@@ -28,8 +33,8 @@ export default {
 <style lang="scss" scoped>
 .card {
     background-color: white;
-    padding: 150px;
-    width: 100px;
+    padding: 150px 100px;
+    
 
 
 }
