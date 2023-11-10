@@ -1,5 +1,5 @@
 <script>
-import { ref } from 'vue'
+
 
 export default {
   data() {
@@ -59,9 +59,13 @@ export default {
             }
 
             .btn-search {
-                line-height: 20px;
+                line-height: 24px;
                 padding: 0px 10px;
                 font-size: 15px;
+                font-weight: 900;
+                background-color: white;
+                border: none;
+                cursor: pointer;
             }
 
 

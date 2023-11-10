@@ -1,6 +1,6 @@
 <script >
 import HeaderPage from './components/HeaderPage.vue';
-import HelloWorld from './components/HelloWorld.vue'
+import MainPage from './components/MainPage.vue'
 
 export default {
 
@@ -11,7 +11,8 @@ data() {
 },
 
 components: {
-    HeaderPage
+    HeaderPage,
+    MainPage
 },
 
 methods: {
@@ -28,6 +29,7 @@ mounted() {
 
 <template>
   <HeaderPage/>
+  <MainPage/>
 </template>
 
 <style lang="scss" >
