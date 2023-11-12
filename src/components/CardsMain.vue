@@ -11,11 +11,38 @@ export default {
     data() {
     return {
         store:store,
+        srcImg: '',
+        original_language: ''
+
     }
     },
 
-    methods: {
+    
 
+    methods: {
+        getImgFlags() {
+            const languageFlags = {
+                en: '/img/en.png',
+                it: '/img/ita.png',
+                es: '/img/esp.png',
+            };
+
+            const languageCode = this.itemMovie.original_language;
+
+           
+            if (languageCode in languageFlags) {
+                this.srcImg = languageFlags[languageCode];
+            } else {
+                
+                this.srcImg = '';
+            }
+    },
+
+        
+    },
+
+    created() {
+        this.getImgFlags()
     }
 
 
@@ -31,16 +58,21 @@ export default {
                 <li> {{ itemMovie.title }}</li>
                 <li>{{ itemMovie.original_title }}</li>
                 <li>{{ itemMovie.original_language }}</li>
+                <li>
+                    <img class="img-flags" v-if="srcImg" :src="srcImg" alt="">
+                </li>
                 <li>{{ itemMovie.vote_average }}</li>
             </ul>
         </div>
     </div>
 </template>
 
+
+
 <style lang="scss" scoped>
 .card {
     background-color: white;
-    padding: 20px 20px;
+    padding: 5px;
     height: 100%;
     
     
@@ -50,6 +82,10 @@ export default {
 .col-3 {
     padding: 10px;
     height: 100%;
+}
+
+.img-flags {
+    width: 20px;
 }
 
 </style>
