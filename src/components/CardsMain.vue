@@ -13,8 +13,9 @@ export default {
         store:store,
         srcImg: '',
         original_language: '',
-        httpsPoster: 'https://image.tmdb.org/t/p/w154',
-        decimalNumber: this.itemMovie.vote_average
+        httpsPoster: 'https://image.tmdb.org/t/p/w185',
+        decimalNumber: this.itemMovie.vote_average,
+        stringNullPoster: 'https://image.tmdb.org/t/p/w185null'
 
     }
     },
@@ -40,7 +41,6 @@ export default {
             }
         },
 
-
         
     },
 
@@ -48,32 +48,46 @@ export default {
         this.getImgFlags()
     }
 
-
 }
-
 
 </script>
 
 <template>
-    <div class="col-3">
+    <div class="col-2">
         <div class="card " v-if="store.pushButton === true">
             <div class="front-card">
-                <img :src="httpsPoster + itemMovie.poster_path" alt="">
+                <div v-if="itemMovie.poster_path">
+                    <img :src="httpsPoster + itemMovie.poster_path" alt="">
+                </div>
+                <div v-else-if="stringNullPoster">
+                    <div class="message-error row">
+                        <h3>"{{ itemTv.name }}"</h3>
+                        <p >Nessuna immagine trovata</p>
+                    </div>
+                </div>    
             </div>
-            <div class="back-card">
+            <div class="back-card row">
                 <ul >
-                    <li>Titolo {{ itemMovie.title }}</li>
-                    <li>Titolo originale: {{ itemMovie.original_title }}</li>
+                    <li>Titolo: 
+                        <div class="information">{{ itemMovie.title }}</div> 
+                    </li>
+                    <li>Titolo originale: 
+                        <div class="information">{{ itemMovie.original_title }}</div>
+                    </li>
                     <li>Lingua:
                         <img class="img-flags" v-if="srcImg" :src="srcImg" alt=""> 
-                        <span v-else>{{ itemMovie.original_language }}</span>    
+                        <div class="information" v-else>{{ itemMovie.original_language }}</div>    
                     </li>
                     <!-- <li>{{ itemMovie.vote_average }}</li> -->
-                    <li>{{Math.trunc(this.decimalNumber / 2)}}</li>
+                    <!-- <li>{{Math.trunc(this.decimalNumber / 2)}}</li> -->
                     <li class="star-vote" >
-                        <div v-for="item in Math.trunc(this.decimalNumber / 2)">
-                            <span >&Star;</span>
+                        Voto:
+                        <div class="information" v-for="item in Math.trunc(this.decimalNumber / 2)">
+                            <span class="star-icon" >&star;</span>
                         </div>
+                    </li>
+                    <li>Overview:
+                        <p class="information">{{ itemMovie.overview}}</p>
                     </li>
                 </ul>
             </div>
@@ -85,40 +99,88 @@ export default {
 
 <style lang="scss" scoped>
 
+.col-2 {
+    padding: 8px 5px;
+}
 .col-3 {
-    padding: 10px;
+    padding: 2px;
 }
 
 .card {
     background-color: white;
-    
-    height: 231px;
-    width: 154px;
+    height: 320px;
+    width: 225px;
 
     .front-card {
-        border: 2px solid red;
+        border: 2px solid lightgray;
         display: inline-block ;
         height: 100%;
     }
+
+    .message-error {
+        height: 320px;
+        width: 225px;  
+        font-size: 20px;
+        font-weight: 800;
+        text-align: center;
+    }
     .front-card img {
-        height: 228px;
-        width: 154px;        
+        display: inline-block;
+        height: 316px;
+        width: 225px;        
     }
     .back-card {
-        border: 2px solid red;
+        border: 2px solid lightgray;
         color: white;
-        height: 231px;
-        width: 154px;
+        height: 320px;
+        width: 225px;
+        overflow: auto;
         display: none;
         padding: 5px;
-        background-color: black;  
+        background-color: black;
+        
+        
+    }
+
+    li {
+        
+        padding-top: 5px;
+        font-weight: 900;
+        font-size: 20px;
+        color: orange;
+
+        .information {
+            
+            font-weight: 300;
+            font-size: 18px;
+            color: white;
+        }
+    }
+
+    .star-icon {
+        font-size: 20px;
     }
 
 }
 
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: orange; 
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: red; 
+}
 .star-vote {
     display: flex;
-
 }
 
 .card:hover .front-card {
@@ -128,8 +190,6 @@ export default {
 .card:hover .back-card{
         display: block;
     }
-
-
 
 .img-flags {
     width: 20px;

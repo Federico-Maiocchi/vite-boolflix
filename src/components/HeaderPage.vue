@@ -2,7 +2,7 @@
 import { store } from '../store';
 
 export default {
-    emits:['search'],
+    emits:['search','searchEnter'],
 
   data() {
     return {
@@ -14,9 +14,9 @@ export default {
 
   methods: {
     upSearch() {
-        this.$emit('search')
+        this.$emit('search', 'searchEnter')
     }
-    
+
   }
 
 
@@ -35,6 +35,7 @@ export default {
                         class="bar-search" 
                         type="text" 
                         placeholder="cerca un film o una serie tv"
+                        @keyup.enter="upSearch"
                         v-model="store.textQuery">
                     <button @click="upSearch" class="btn-search">Cerca</button>
                 </div>  
@@ -47,7 +48,7 @@ export default {
 
 .header-page {
     background-color: black;
-    padding: 30px 5px;
+    padding: 30px 40px;
 
     .container-fluid {
         max-width: 100%;

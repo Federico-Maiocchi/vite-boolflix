@@ -72,7 +72,8 @@ mounted() {
 
 <template>
   <HeaderPage
-    @search="searchApi" />
+    @search="searchApi"
+    @searchEnter="searchApi" />
 
   <MainPage/>
 </template>
