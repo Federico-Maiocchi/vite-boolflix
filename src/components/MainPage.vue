@@ -1,5 +1,7 @@
 <script>
+
 import CardsMain from './CardsMain.vue';
+import CardsMainTv from './CardsMainTv.vue'
 import { store } from '../store'
 
 
@@ -19,11 +21,12 @@ export default {
     },
 
     components: { 
-        CardsMain 
+        CardsMain,
+        CardsMainTv 
     },
 
     mounted() {
-        console.log(this.movies)
+        
     }
 }
 
@@ -33,11 +36,18 @@ export default {
 <template>
   <div class="main-page">
     <div class="container-small">
+        <h3>Films</h3>
         <div class="row">
             <CardsMain 
             v-for="movie in store.movie"
-            :itemMovie="movie" 
-             
+            :itemMovie="movie"
+            />
+        </div>
+        <h3>Serie Tv</h3>
+        <div class="row">
+            <CardsMainTv
+            v-for="serie in store.tv"
+            :itemTv="serie"
             />
         </div>
     </div>

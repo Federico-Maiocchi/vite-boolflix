@@ -37,11 +37,26 @@ export default {
         const objMovie = res.data.results
 
         this.store.movie = objMovie
-        console.log(this.store.movie)
+        console.log('movie', this.store.movie)
 
         this.store.pushButton = true
 
       })
+
+      axios.get('https://api.themoviedb.org/3/search/tv',{
+        params: {
+          api_key: this.API_KEY,
+          query: this.store.textQuery
+        }
+      }).then(res => {
+
+        const objTv = res.data.results
+
+        this.store.tv = objTv
+        console.log('series', this.store.tv)
+        
+        this.store.pushButton = true
+      }) 
 
     }
 
