@@ -49,6 +49,8 @@ export default {
 .header-page {
     background-color: black;
     padding: 30px 40px;
+    overflow: hidden;
+    
 
     .container-fluid {
         max-width: 100%;
@@ -60,6 +62,7 @@ export default {
 
 
             h2 {
+                font-size: 60px;
                 color: red;
                 text-transform: uppercase;
             }

@@ -35,7 +35,7 @@ export default {
   <div class="main-page">
     <div class="container-small">
         <div class="row">
-            <div>
+            <div v-if="store.movie.length > 0">
                 <h3 class="title-main">Film</h3>
             </div>
             <div class="row">
@@ -44,9 +44,12 @@ export default {
                 :itemMovie="movie"
                 />
             </div>
+            <!-- <div v-if="store.movie.length === 0">
+                nussun film trovato
+            </div> -->
         </div>
         <div class="row p-top">
-            <div>
+            <div v-if="store.tv.length > 0">
                 <h3 class="title-main">Serie Tv</h3>
             </div>
             <div class="row ">
@@ -63,7 +66,8 @@ export default {
 <style lang="scss" scoped>
 .main-page {
     background-color: gray;
-    min-height: 100vh;
+    height: 100vh;
+    overflow: auto;
 
     .container-small {
         max-width: 1000px;
@@ -85,4 +89,20 @@ export default {
     }
 }
 
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: blue; 
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: red; 
+}
 </style>

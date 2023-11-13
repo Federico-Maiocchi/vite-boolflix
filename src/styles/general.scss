@@ -20,3 +20,8 @@
 .col-2 {
     flex-basis: calc((100% / 12) * 2);
 }
+
+#app {
+    overflow: hidden;
+    height: 100vh;
+}

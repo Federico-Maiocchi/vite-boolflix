@@ -61,7 +61,7 @@ export default {
                 </div>
                 <div v-else-if="stringNullPoster">
                     <div class="message-error row">
-                        <h3>"{{ itemMovie.name }}"</h3>
+                        <h3>"{{ itemMovie.title }}"</h3>
                         <p >Nessuna immagine trovata</p>
                     </div>
                 </div>    
@@ -90,8 +90,8 @@ export default {
                         Voto:
                         <span class="information">nessun voto</span>
                     </li>
-                    <li>Overview:
-                        <p class="information">{{ itemMovie.overview}}</p>
+                    <li >Overview:
+                        <p class="information">{{ itemMovie.overview}} {{Math.trunc(this.decimalNumber / 2)}}</p>
                     </li>
                 </ul>
             </div>

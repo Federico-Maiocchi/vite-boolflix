@@ -26,7 +26,15 @@ export default {
 
   methods: {
     searchApi() {
-      console.log('click button')
+
+      if(this.store.textQuery === '') {
+        store.movie = []
+        store.tv = []
+        return
+      }
+
+
+      // console.log('click button')
       axios.get('https://api.themoviedb.org/3/search/movie',{
         params : {
           api_key: this.API_KEY,
@@ -71,15 +79,23 @@ mounted() {
 </script>
 
 <template>
-  <HeaderPage
+  <div class="body-app">
+    <HeaderPage
     @search="searchApi"
     @searchEnter="searchApi" />
-
-  <MainPage/>
+    <MainPage/>
+  </div>
+  
+  
+  
 </template>
 
 <style lang="scss" >
 @use './styles/reset.scss';
 @use './styles/general.scss';
+
+.body-app {
+  overflow: hidden;
+}
 
 </style>
