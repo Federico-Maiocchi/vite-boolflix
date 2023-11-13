@@ -63,7 +63,7 @@ export default {
 <style lang="scss" scoped>
 .main-page {
     background-color: gray;
-    min-height: 800px;
+    min-height: 100vh;
 
     .container-small {
         max-width: 1000px;

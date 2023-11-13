@@ -61,7 +61,7 @@ export default {
                 </div>
                 <div v-else-if="stringNullPoster">
                     <div class="message-error row">
-                        <h3>"{{ itemTv.name }}"</h3>
+                        <h3>"{{ itemMovie.name }}"</h3>
                         <p >Nessuna immagine trovata</p>
                     </div>
                 </div>    
@@ -76,15 +76,19 @@ export default {
                     </li>
                     <li>Lingua:
                         <img class="img-flags" v-if="srcImg" :src="srcImg" alt=""> 
-                        <div class="information" v-else>{{ itemMovie.original_language }}</div>    
+                        <span class="information" v-else>{{ itemMovie.original_language }}</span>    
                     </li>
                     <!-- <li>{{ itemMovie.vote_average }}</li> -->
                     <!-- <li>{{Math.trunc(this.decimalNumber / 2)}}</li> -->
-                    <li class="star-vote" >
+                    <li v-if=" Math.trunc(this.decimalNumber / 2) > 0" class="star-vote" >
                         Voto:
                         <div class="information" v-for="item in Math.trunc(this.decimalNumber / 2)">
                             <span class="star-icon" >&star;</span>
                         </div>
+                    </li>
+                    <li v-else>
+                        Voto:
+                        <span class="information">nessun voto</span>
                     </li>
                     <li>Overview:
                         <p class="information">{{ itemMovie.overview}}</p>
