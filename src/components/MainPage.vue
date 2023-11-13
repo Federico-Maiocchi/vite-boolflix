@@ -6,8 +6,6 @@ import CardHero from './CardHero.vue'
 import { store } from '../store'
 
 
-
-
 export default {
 
     data() {
@@ -57,6 +55,13 @@ export default {
 
                 this.currentIndex = 0;
             }
+        },
+
+        onClick(index) {
+            console.log('click card hero')
+
+            this.currentIndex = index;
+
         }
     },
 
@@ -72,7 +77,6 @@ export default {
     }
 }
 
-   
 </script>
 
 <template>
@@ -85,6 +89,7 @@ export default {
                 <CardHero 
                     class="thumb"
                     v-for="(heroFilm,index) in heroImg "
+                    @click="onClick(index)"
                     :class="currentIndex === index ? 'active' : '' "
                     :key="index"
                     :itemHero="heroFilm"/>
@@ -157,8 +162,7 @@ export default {
 
         .prev {
             left: 0px;
-            bottom: 100px;
-            
+            bottom: 100px;  
         }
 
         .next {
@@ -167,7 +171,6 @@ export default {
         }
 
         .active {
-            
             background-color: rgb(77, 77, 77);
             box-shadow: 7px 7px 8px 8px darkslategrey;
             border-radius: 20px;

@@ -16,7 +16,7 @@ export default {
     },
 
     methods: {
-
+        
     },
 
     created() {
@@ -57,6 +57,14 @@ export default {
     }
 }
 
+}
+
+.card-hero:hover {
+    background-color: rgb(77, 77, 77);
+    box-shadow: 7px 7px 8px 8px darkslategrey;
+    border-radius: 20px;
+    height: 380px;
+    width: 255px;
 }
 
 </style>
