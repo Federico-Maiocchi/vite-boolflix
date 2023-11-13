@@ -48,7 +48,7 @@ export default {
 
 .header-page {
     background-color: black;
-    padding: 30px 40px;
+    padding: 15px 40px;
     overflow: hidden;
     
 
@@ -62,21 +62,21 @@ export default {
 
 
             h2 {
-                font-size: 60px;
+                font-size: 40px;
                 color: red;
                 text-transform: uppercase;
             }
 
             .bar-search {
-                line-height: 20px;
-                font-size: 15px;
+                line-height: 28px;
+                font-size: 20px;
                 margin-right: 10px;
             }
 
             .btn-search {
-                line-height: 24px;
+                line-height: 26px;
                 padding: 0px 10px;
-                font-size: 15px;
+                font-size: 20px;
                 font-weight: 900;
                 background-color: white;
                 border: none;

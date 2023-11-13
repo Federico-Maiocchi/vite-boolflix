@@ -61,8 +61,15 @@ export default {
                 </div>
                 <div v-else-if="stringNullPoster">
                     <div class="message-error row">
-                        <h3>"{{ itemMovie.title }}"</h3>
-                        <p >Nessuna immagine trovata</p>
+                        <img src="/img-notif/img-not-found.jpg" alt="">
+                        <span class="info-message-error">
+                            <div class="container-info-error">
+                                <div class="row-info-error">
+                                    <h3>"{{ itemMovie.title }}"</h3>
+                                    <p class="p-error" >Nessuna immagine trovata</p>
+                                </div>
+                            </div> 
+                        </span>   
                     </div>
                 </div>    
             </div>
@@ -119,6 +126,7 @@ export default {
         border: 2px solid lightgray;
         display: inline-block ;
         height: 100%;
+        position: relative;
     }
 
     .message-error {
@@ -127,6 +135,25 @@ export default {
         font-size: 20px;
         font-weight: 800;
         text-align: center;
+
+        .info-message-error {
+            position: absolute;
+
+            .container-info-error {
+                height: 300px;
+            }
+
+            .row-info-error {
+                flex-wrap: nowrap;
+                flex-direction: column;
+                
+
+                .p-error {
+                    padding-top: 140px;
+                }
+
+            }
+        }
     }
     .front-card img {
         display: inline-block;
@@ -193,7 +220,7 @@ export default {
 
 .card:hover .back-card{
         display: block;
-    }
+}
 
 .img-flags {
     width: 20px;
