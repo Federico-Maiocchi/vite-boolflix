@@ -103,9 +103,9 @@ export default {
                 :itemMovie="movie"
                 />
             </div>
-            <!-- <div v-if="store.movie.length === 0">
-                nussun film trovato
-            </div> -->
+            <div v-if="!store.movie.length">
+                Nussun film trovato
+            </div>
         </div>
         <div class="row p-v">
             <div v-if="store.tv.length > 0">
@@ -116,6 +116,9 @@ export default {
                 v-for="serie in store.tv"
                 :itemTv="serie"
                 />
+            </div>
+            <div v-if="!store.tv.length">
+                Nussuna serie trovata
             </div>
         </div>
     </div>
