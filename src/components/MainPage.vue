@@ -33,8 +33,16 @@ export default {
 
 <template>
   <div class="main-page">
+    <div class="">
+        <p>pippo</p>
+    </div>
+
+
+
+
+
     <div class="container-small">
-        <div class="row">
+        <div class="row ">
             <div v-if="store.movie.length > 0">
                 <h3 class="title-main">Film</h3>
             </div>
@@ -48,7 +56,7 @@ export default {
                 nussun film trovato
             </div> -->
         </div>
-        <div class="row p-top">
+        <div class="row p-v">
             <div v-if="store.tv.length > 0">
                 <h3 class="title-main">Serie Tv</h3>
             </div>
@@ -66,14 +74,14 @@ export default {
 <style lang="scss" scoped>
 .main-page {
     background-color: gray;
-    height: 100vh;
+    height: 800px;
     overflow: auto;
 
     .container-small {
-        max-width: 1000px;
+        max-width: 100%;
         margin: 0 auto;
         padding-top: 50px;
-        height: 100%;
+        
 
         .row {
             height: 100%;
@@ -83,26 +91,28 @@ export default {
             }
         }
 
-        .p-top {
-            padding-top: 70px;
+        .p-v {
+            padding: 70px 0px 30px 0px;
         }
     }
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
+    width: 15px;
+
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #000000; 
 }
  
 ::-webkit-scrollbar-thumb {
-  background: blue; 
+  background: rgb(165, 8, 8);
+  border-radius: 30px; 
 }
 
 
 ::-webkit-scrollbar-thumb:hover {
-  background: red; 
+  background: rgb(255, 208, 0); 
 }
 </style>
