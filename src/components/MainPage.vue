@@ -31,7 +31,8 @@ export default {
                     img:"/hero-img/hero5.jpeg",
                 },
     
-            ]
+            ],
+            
         };
     },
 
@@ -76,9 +77,9 @@ export default {
 
 <template>
   <div class="main-page">
-    <div class="hero">
+    <div class="hero" v-if="store.movie.length === 0">
         <div class="container-hero">
-            <h1>Novità della settimana su boolflix</h1>
+            <h1 class="hero-title">Novità della settimana su boolflix</h1>
             <div class="row">
                 <div class="prev" @click="prevClick()">&#8249;</div>
                 <CardHero 
@@ -88,15 +89,9 @@ export default {
                     :key="index"
                     :itemHero="heroFilm"/>
                 <div class="next" @click="nextClick()">&#8250;</div>
-            </div>
-            
+            </div>  
         </div>
     </div>
-
-
-
-
-
     <div class="container-small">
         <div class="row ">
             <div v-if="store.movie.length > 0">
@@ -136,6 +131,11 @@ export default {
     .hero {
         padding: 100px 30px;
 
+        .hero-title {
+            font-size: 60px;
+            margin-bottom: 40px;
+        }
+
         .row {
             position: relative;
             justify-content: center;
@@ -170,13 +170,12 @@ export default {
             border-radius: 20px;
             height: 380px;
             width: 255px;
-            
-            
-            
             // display: none;
         }
 
-        
+        .d-none {
+            display: none;
+        }
 
     }
 

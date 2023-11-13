@@ -4,23 +4,19 @@ import { store } from '../store'
 export default {
     props:{
 
-        itemHero: Object
-
+        itemHero: Object,
+        
     },
 
     data() {
     return {
         store:store,
         
-    }
+        }
     },
 
-    
-
     methods: {
-       
 
-        
     },
 
     created() {
