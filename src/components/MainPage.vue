@@ -13,7 +13,7 @@ export default {
     data() {
         return {
             store: store,
-
+            currentIndex: 0,
             heroImg: [
                 {
                     img:"/hero-img/hero1.jpeg",
@@ -30,17 +30,33 @@ export default {
                 {
                     img:"/hero-img/hero5.jpeg",
                 },
-                {
-                    img:"/hero-img/hero6.jpeg",
-                },
-               
-                    
+    
             ]
         };
     },
 
     methods: {
+        prevClick() {
+            // console.log('click sinistro')
 
+
+            this.currentIndex--;
+
+            if(this.currentIndex === -1) {
+                this.currentIndex = this.heroImg.length -1;
+            }
+        },
+
+        nextClick() {
+            // console.log('click destro')
+
+            this.currentIndex++;
+
+            if(this.currentIndex === this.heroImg.length) {
+
+                this.currentIndex = 0;
+            }
+        }
     },
 
     components: {
@@ -62,13 +78,15 @@ export default {
   <div class="main-page">
     <div class="hero">
         <div class="container-hero">
-           
+            <h1>Novità della settimana su boolflix</h1>
             <div class="row">
                 <div class="prev" @click="prevClick()">&#8249;</div>
                 <CardHero 
-                v-for="(heroFilm,index) in heroImg "
-                :key="index"
-                :itemHero="heroFilm"/>
+                    class="thumb"
+                    v-for="(heroFilm,index) in heroImg "
+                    :class="currentIndex === index ? 'active' : '' "
+                    :key="index"
+                    :itemHero="heroFilm"/>
                 <div class="next" @click="nextClick()">&#8250;</div>
             </div>
             
@@ -118,21 +136,17 @@ export default {
     .hero {
         padding: 100px 30px;
 
-        
-
         .row {
             position: relative;
+            justify-content: center;
         }
 
         .prev, .next {
             font-size: 60px;
             font-weight: 900;
             padding: 5px;
-            // margin: 100px 0;
             background-color: white;
             border-radius: 100px;
-            
-            // transform: translate(-50%);
             cursor: pointer;
             z-index: 999;
             position: absolute;
@@ -141,11 +155,25 @@ export default {
         .prev {
             left: 0px;
             bottom: 100px;
+            
         }
 
         .next {
             right: 5px;
             bottom: 100px;
+        }
+
+        .active {
+            
+            background-color: rgb(77, 77, 77);
+            box-shadow: 7px 7px 8px 8px darkslategrey;
+            border-radius: 20px;
+            height: 380px;
+            width: 255px;
+            
+            
+            
+            // display: none;
         }
 
         
@@ -159,6 +187,7 @@ export default {
         
         .row {
             height: 100%;
+
 
             .title-main {
                 font-size: 60px;

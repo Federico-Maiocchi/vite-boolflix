@@ -47,13 +47,13 @@ export default {
 <style lang="scss" scoped>
 
 .col {
-    // padding: 0px;
-    width: calc(100% / 6);
+    // padding: 10px;
+    // width: calc(100% / 6);
     .card-hero {
     // background-color: white;
     height: 350px;
     width: 250px;
-    padding: 20px;
+    padding: 10px;
 
     img {
         height: 350px;

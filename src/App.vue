@@ -66,7 +66,9 @@ export default {
         this.store.pushButton = true
       }) 
 
-    }
+    },
+
+    
 
 },
 
