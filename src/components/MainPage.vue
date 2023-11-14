@@ -1,7 +1,7 @@
 <script>
 
 import CardsMain from './CardsMain.vue';
-import CardsMainTv from './CardsMainTv.vue'
+// import CardsMainTv from './CardsMainTv.vue'
 import CardHero from './CardHero.vue'
 import { store } from '../store'
 
@@ -15,6 +15,7 @@ export default {
             heroImg: [
                 {
                     img:"/hero-img/hero1.jpeg",
+                    
                 },
                 {
                     img:"/hero-img/hero2.jpeg",
@@ -67,7 +68,7 @@ export default {
 
     components: {
     CardsMain,
-    CardsMainTv,
+    // CardsMainTv,
     CardHero,
     
 },
@@ -94,43 +95,75 @@ export default {
                     :key="index"
                     :itemHero="heroFilm"/>
                 <div class="next" @click="nextClick()">&#8250;</div>
-            </div>  
+            </div>
+            <!-- <div class="carousel">
+                <div class="container-car" >
+                    <div class="row">
+                        <figure>
+                            <img class="img-car" src='/hero-img/hero1b.jpeg' alt=""/>
+                        </figure>
+                        <div class="text">
+                            <h3>titolo</h3>
+                            <p>descrizione</p>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
         </div>
     </div>
     <div class="container-small">
-        <div class="row ">
+        <div >
             <div v-if="store.movie.length > 0">
                 <h3 class="title-main">Film</h3>
             </div>
             <div class="row">
                 <CardsMain 
                 v-for="movie in store.movie"
-                :itemMovie="movie"
+                :key="movie.id"
+                :item="movie"
                 />
             </div>
-            <div v-if="!store.movie.length">
+            <!-- <div v-if="!store.movie.length">
                 Nussun film trovato
-            </div>
+            </div> -->
         </div>
-        <div class="row p-v">
+        <div class="p-v">
             <div v-if="store.tv.length > 0">
                 <h3 class="title-main">Serie Tv</h3>
             </div>
-            <div class="row ">
-                <CardsMainTv
+            <div class="row">
+                <CardsMain
                 v-for="serie in store.tv"
-                :itemTv="serie"
+                :key="serie.id"
+                :item="serie"
                 />
             </div>
-            <div v-if="!store.tv.length">
+            <!-- <div v-if="!store.tv.length">
                 Nussuna serie trovata
-            </div>
+            </div> -->
         </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+
+
+.carousel {
+        padding-top: 30px;
+
+        .container-car {
+            max-width: 600px;
+            margin: 0 auto;
+
+        }
+       
+    }
+
+
+
+
+    
 .main-page {
     background-color: gray;
     height: 100vh;
@@ -185,6 +218,8 @@ export default {
 
     }
 
+    
+
     .container-small {
         max-width: 100%;
         margin: 0 auto;
@@ -192,15 +227,17 @@ export default {
         
         .row {
             height: 100%;
-
-
-            .title-main {
-                font-size: 60px;
-            }
+            justify-content: center;  
         }
 
         .p-v {
             padding: 30px 0px 30px 0px;
+        }
+
+        .title-main {
+            text-align: center;
+            font-size: 60px;
+            margin-bottom: 50px;
         }
     }
 }

@@ -4,7 +4,7 @@ import { store } from '../store'
 export default {
     props:{
 
-        itemMovie: Object
+        item: Object
 
     },
 
@@ -14,7 +14,7 @@ export default {
         srcImg: '',
         original_language: '',
         httpsPoster: 'https://image.tmdb.org/t/p/w185',
-        decimalNumber: this.itemMovie.vote_average,
+        decimalNumber: this.item.vote_average,
         stringNullPoster: 'https://image.tmdb.org/t/p/w185null'
 
     }
@@ -30,7 +30,7 @@ export default {
                 es: '/img/esp.png',
             };
 
-            const languageCode = this.itemMovie.original_language;
+            const languageCode = this.item.original_language;
 
            
             if (languageCode in languageFlags) {
@@ -42,6 +42,28 @@ export default {
         },
 
         
+    },
+
+    computed: {
+        title() {
+            if(this.item.title) {
+                return this.item.title
+            }else {
+                return this.item.name
+            }
+        },
+
+
+        originalTitle() {
+            if(this.item.original_title) {
+                return this.item.original_title
+            }else {
+                return this.item.original_name
+            }
+            
+        }
+
+
     },
 
     created() {
@@ -56,8 +78,8 @@ export default {
     <div class="col-2">
         <div class="card " v-if="store.pushButton === true">
             <div class="front-card">
-                <div v-if="itemMovie.poster_path">
-                    <img :src="httpsPoster + itemMovie.poster_path" alt="">
+                <div v-if="item.poster_path">
+                    <img :src="httpsPoster + item.poster_path" alt="">
                 </div>
                 <div v-else-if="stringNullPoster">
                     <div class="message-error row">
@@ -65,7 +87,7 @@ export default {
                         <span class="info-message-error">
                             <div class="container-info-error">
                                 <div class="row-info-error">
-                                    <h3>"{{ itemMovie.title }}"</h3>
+                                    <h3>"{{ title }}"</h3>
                                     <p class="p-error" >Nessuna immagine trovata</p>
                                 </div>
                             </div> 
@@ -76,14 +98,14 @@ export default {
             <div class="back-card row">
                 <ul >
                     <li>Titolo: 
-                        <div class="information">{{ itemMovie.title }}</div> 
+                        <div class="information">{{ title }}</div> 
                     </li>
                     <li>Titolo originale: 
-                        <div class="information">{{ itemMovie.original_title }}</div>
+                        <div class="information">{{ originalTitle }}</div>
                     </li>
                     <li>Lingua:
                         <img class="img-flags" v-if="srcImg" :src="srcImg" alt=""> 
-                        <span class="information" v-else>{{ itemMovie.original_language }}</span>    
+                        <span class="information" v-else>{{ item.original_language }}</span>    
                     </li>
                     <!-- <li>{{ itemMovie.vote_average }}</li> -->
                     <!-- <li>{{Math.trunc(this.decimalNumber / 2)}}</li> -->
@@ -98,7 +120,7 @@ export default {
                         <span class="information">nessun voto</span>
                     </li>
                     <li >Overview:
-                        <p class="information">{{ itemMovie.overview}} {{Math.trunc(this.decimalNumber / 2)}}</p>
+                        <p class="information">{{ item.overview }} {{Math.trunc(this.decimalNumber / 2)}}</p>
                     </li>
                 </ul>
             </div>

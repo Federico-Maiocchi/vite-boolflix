@@ -17,7 +17,7 @@ export default {
         decimalNumber: this.itemTv.vote_average,
         stringNullPoster: 'https://image.tmdb.org/t/p/w185null'
 
-    }
+        }
     },
 
     
@@ -39,10 +39,11 @@ export default {
                 
                 this.srcImg = '';
             }
-    },
+        },
 
         
     },
+
 
     created() {
         this.getImgFlags()
@@ -54,7 +55,6 @@ export default {
 </script>
 
 <template>
-    
     <div class="col-2">
         <div class="card " v-if="store.pushButton === true">
             <div class="front-card">

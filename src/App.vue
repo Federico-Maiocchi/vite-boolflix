@@ -50,6 +50,10 @@ export default {
         this.store.pushButton = true
 
       })
+      .catch(err => {
+        console.log(err.err.results)
+      })
+
 
       axios.get('https://api.themoviedb.org/3/search/tv',{
         params: {

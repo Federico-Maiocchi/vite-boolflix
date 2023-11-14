@@ -50,6 +50,7 @@ export default {
     height: 350px;
     width: 250px;
     padding: 10px;
+    transform: scale(0.9);
 
     img {
         height: 350px;
@@ -65,6 +66,7 @@ export default {
     border-radius: 20px;
     height: 380px;
     width: 255px;
+    transform: scale(1);
 }
 
 </style>
