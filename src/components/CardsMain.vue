@@ -61,6 +61,10 @@ export default {
                 return this.item.original_name
             }
             
+        },
+
+        calcVote() {
+           return Math.trunc(this.decimalNumber / 2)
         }
 
 
@@ -111,16 +115,18 @@ export default {
                     <!-- <li>{{Math.trunc(this.decimalNumber / 2)}}</li> -->
                     <li v-if=" Math.trunc(this.decimalNumber / 2) > 0" class="star-vote" >
                         Voto:
-                        <div class="information" v-for="item in Math.trunc(this.decimalNumber / 2)">
-                            <span class="star-icon" >&star;</span>
+                        <div class="information">
+                            <span class="star-icon" v-for="item in calcVote" >&starf;</span>
+                            <span class="star-icon" v-for="item in 5 - calcVote">&star;</span>
                         </div>
+                        
                     </li>
                     <li v-else>
                         Voto:
                         <span class="information">nessun voto</span>
                     </li>
                     <li >Overview:
-                        <p class="information">{{ item.overview }} {{Math.trunc(this.decimalNumber / 2)}}</p>
+                        <p class="information">{{ item.overview }} {{calcVote }}</p>
                     </li>
                 </ul>
             </div>
