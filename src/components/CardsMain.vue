@@ -31,6 +31,7 @@ export default {
             };
 
             const languageCode = this.item.original_language;
+            console.log(languageCode)
 
            
             if (languageCode in languageFlags) {
@@ -113,7 +114,7 @@ export default {
                     </li>
                     <!-- <li>{{ itemMovie.vote_average }}</li> -->
                     <!-- <li>{{Math.trunc(this.decimalNumber / 2)}}</li> -->
-                    <li v-if=" Math.trunc(this.decimalNumber / 2) > 0" class="star-vote" >
+                    <li v-if=" calcVote > 0" class="star-vote" >
                         Voto:
                         <div class="information">
                             <span class="star-icon" v-for="item in calcVote" >&starf;</span>

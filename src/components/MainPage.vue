@@ -3,6 +3,7 @@
 import CardsMain from './CardsMain.vue';
 // import CardsMainTv from './CardsMainTv.vue'
 import CardHero from './CardHero.vue'
+import CarouselHero from './CarouselHero.vue'
 import { store } from '../store'
 
 
@@ -12,50 +13,50 @@ export default {
         return {
             store: store,
             currentIndex: 0,
-            heroImg: [
-                {
-                    img:"/hero-img/hero1.jpeg",
-                    imgBack: '/hero-img/hero1b.jpeg',
-                    title: 'Uncharted',
-                    originalTitle: 'Uncharted',
-                    language: 'it',
-                    vote: '7.8',
+            // heroImg: [
+            //     {
+            //         img:"/hero-img/hero1.jpeg",
+            //         imgBack: '/hero-img/hero1b.jpeg',
+            //         title: 'Uncharted',
+            //         originalTitle: 'Uncharted',
+            //         language: 'it',
+            //         vote: '7.8',
                     
-                },
-                {
-                    img:"/hero-img/hero2.jpeg",
-                    imgBack: '/hero-img/hero2b.jpeg',
-                    title: 'Joker',
-                    originalTitle: 'Joker',
-                    language: 'en',
-                    vote: '8.6',
-                },
-                {
-                    img:"/hero-img/hero3.jpeg",
-                    imgBack: '/hero-img/hero3b.jpg',
-                    title: 'Hypnotic',
-                    originalTitle: 'Hypnotic',
-                    language: 'it',
-                    vote: '6.3',
-                },
-                {
-                    img:"/hero-img/hero4.jpeg",
-                    imgBack: '/hero-img/hero4b.jpg',
-                    title: '2012',
-                    originalTitle: '2012',
-                    language: 'es',
-                    vote: '5.5',
-                },
-                {
-                    img:"/hero-img/hero5.jpeg",
-                    imgBack: '/hero-img/hero5b.jpg',
-                    title: 'Avengers: Endgame',
-                    originalTitle: 'Avengers: Endgame',
-                    language: 'en',
-                    vote: '10',
-                },
+            //     },
+            //     {
+            //         img:"/hero-img/hero2.jpeg",
+            //         imgBack: '/hero-img/hero2b.jpeg',
+            //         title: 'Joker',
+            //         originalTitle: 'Joker',
+            //         language: 'en',
+            //         vote: '8.6',
+            //     },
+            //     {
+            //         img:"/hero-img/hero3.jpeg",
+            //         imgBack: '/hero-img/hero3b.jpg',
+            //         title: 'Hypnotic',
+            //         originalTitle: 'Hypnotic',
+            //         language: 'it',
+            //         vote: '6.3',
+            //     },
+            //     {
+            //         img:"/hero-img/hero4.jpeg",
+            //         imgBack: '/hero-img/hero4b.jpg',
+            //         title: '2012',
+            //         originalTitle: '2012',
+            //         language: 'es',
+            //         vote: '5.5',
+            //     },
+            //     {
+            //         img:"/hero-img/hero5.jpeg",
+            //         imgBack: '/hero-img/hero5b.jpg',
+            //         title: 'Avengers: Endgame',
+            //         originalTitle: 'Avengers: Endgame',
+            //         language: 'en',
+            //         vote: '10',
+            //     },
     
-            ],
+            // ],
             
         };
     },
@@ -68,7 +69,7 @@ export default {
             this.currentIndex--;
 
             if(this.currentIndex === -1) {
-                this.currentIndex = this.heroImg.length -1;
+                this.currentIndex = this.store.heroImg.length -1;
             }
         },
 
@@ -77,7 +78,7 @@ export default {
 
             this.currentIndex++;
 
-            if(this.currentIndex === this.heroImg.length) {
+            if(this.currentIndex === this.store.heroImg.length) {
 
                 this.currentIndex = 0;
             }
@@ -95,6 +96,7 @@ export default {
     CardsMain,
     // CardsMainTv,
     CardHero,
+    CarouselHero
     
 },
 
@@ -111,43 +113,20 @@ export default {
         <div class="container-hero">
             <h1 class="hero-title">Novità della settimana su boolflix</h1>
             <div class="row">
-                <div class="prev" @click="prevClick()">&#8249;</div>
+                <div class="prev" @click="prevClick()"><span>&#8249;</span></div>
                 <CardHero 
                     class="thumb"
-                    v-for="(heroFilm,index) in heroImg "
+                    v-for="(heroFilm,index) in store.heroImg "
                     @click="onClick(index)"
                     :class="currentIndex === index ? 'active' : '' "
                     :key="index"
                     :itemHero="heroFilm"/>
-                <div class="next" @click="nextClick()">&#8250;</div>
+                <div class="next" @click="nextClick()"><span>&#8250;</span></div>
             </div>
-            <div class="carousel">
-                <div class="container-car" >
-                    <div class="row">
-                        <img class="img-car" :src=" heroImg[currentIndex].imgBack " alt=""/>
-                        <div class="info-car">
-                            <ul>
-                                <li>
-                                    Titolo:
-                                    <div class="information">{{ heroImg[currentIndex].title }}</div>
-                                </li>
-                                <li>
-                                    Titolo originale:
-                                    <div class="information">{{ heroImg[currentIndex].originalTitle }}</div>
-                                </li>
-                                <li>
-                                    Lingua:
-                                    <div class="information">{{ heroImg[currentIndex].language }}</div>
-                                </li>
-                                <li>
-                                    Voto:
-                                    <div class="information">{{ heroImg[currentIndex].vote }}</div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <CarouselHero 
+                :itemCarousel="store.heroImg"
+                :currentIndex="currentIndex"
+            /> 
         </div>
     </div>
     <div class="container-small">
@@ -212,9 +191,9 @@ export default {
         .prev, .next {
             font-size: 60px;
             font-weight: 900;
-            padding: 5px;
+            padding: 0px 5px 10px 5px;
             background-color: white;
-            border-radius: 100px;
+            border-radius: 10px;
             cursor: pointer;
             z-index: 999;
             position: absolute;
@@ -222,12 +201,12 @@ export default {
 
         .prev {
             left: 0px;
-            bottom: 100px;  
+            bottom: 150px;  
         }
 
         .next {
             right: 5px;
-            bottom: 100px;
+            bottom: 150px;
         }
 
         .active {
@@ -243,52 +222,52 @@ export default {
             display: none;
         }
 
-        .carousel {
-        padding-top: 30px;
+        // .carousel {
+        // padding-top: 30px;
 
-            .container-car {
-                max-width: 800px;
-                // height: 400px;
-                margin: 0 auto;
-                border: 3px solid black;
+        //     .container-car {
+        //         max-width: 800px;
+        //         // height: 400px;
+        //         margin: 0 auto;
+        //         border: 3px solid black;
                 
 
-                .row {
-                    justify-content: flex-start;
-                    height: 100%;
+        //         .row {
+        //             justify-content: flex-start;
+        //             height: 100%;
 
-                    .img-car {
-                        width: 520px;
-                        height: 350px;
-                        object-fit: cover;
-                    }
+        //             .img-car {
+        //                 width: 520px;
+        //                 height: 350px;
+        //                 object-fit: cover;
+        //             }
 
-                    .info-car {
-                        flex-grow: 1;
-                        background-color: black;
-                        padding: 5px;
+        //             .info-car {
+        //                 flex-grow: 1;
+        //                 background-color: black;
+        //                 padding: 5px;
                         
 
-                        li {
-                            padding-top: 5px;
-                            font-weight: 900;
-                            font-size: 24px;
-                            color: orange;
+        //                 li {
+        //                     padding-top: 5px;
+        //                     font-weight: 900;
+        //                     font-size: 24px;
+        //                     color: orange;
 
-                            .information {
-                                font-weight: 300;
-                                font-size: 22px;
-                                color: white;
-                            }
-                        }
+        //                     .information {
+        //                         font-weight: 300;
+        //                         font-size: 22px;
+        //                         color: white;
+        //                     }
+        //                 }
 
-                    }
-                }
+        //             }
+        //         }
 
 
-            }
+        //     }
        
-        }
+        // }
 
     }
 
@@ -335,3 +314,31 @@ export default {
   background: rgb(255, 208, 0); 
 }
 </style>
+
+<!-- <div class="carousel">
+    <div class="container-car" >
+        <div class="row">
+            <img class="img-car" :src=" heroImg[currentIndex].imgBack " alt=""/>
+            <div class="info-car">
+                <ul>
+                    <li>
+                        Titolo:
+                        <div class="information">{{ heroImg[currentIndex].title }}</div>
+                    </li>
+                    <li>
+                        Titolo originale:
+                        <div class="information">{{ heroImg[currentIndex].originalTitle }}</div>
+                    </li>
+                    <li>
+                        Lingua:
+                        <div class="information">{{ heroImg[currentIndex].language }}</div>
+                    </li>
+                    <li>
+                        Voto:
+                        <div class="information">{{ heroImg[currentIndex].vote }}</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> -->
