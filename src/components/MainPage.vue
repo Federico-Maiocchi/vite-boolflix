@@ -124,7 +124,7 @@ export default {
                 <div class="next" @click="nextClick()"><span>&#8250;</span></div>
             </div>
             <CarouselHero 
-                :itemCarousel="store.heroImg"
+                :itemCarousel="store.heroImg[currentIndex]"
                 :currentIndex="currentIndex"
             /> 
         </div>

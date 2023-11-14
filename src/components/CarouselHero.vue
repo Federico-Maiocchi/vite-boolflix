@@ -12,13 +12,12 @@ export default {
     data() {
     return {
         store:store,
-        srcImg: '',
-        decimalNumber: this.itemCarousel.vote,
+        // srcImg: '',
         
         }
     },
 
-    methods: {
+    computed: {
         getImgFlags() {
             const languageFlags = {
                 en: '/img/en.png',
@@ -29,27 +28,17 @@ export default {
             const languageCode = this.itemCarousel.language;
             console.log(languageCode)
 
-           
-            if (languageCode in languageFlags) {
-                this.srcImg = languageFlags[languageCode];
-            } else {
-                
-                this.srcImg = '';
+            let srcImg = '';
+            if (languageFlags[languageCode]) {
+                srcImg = languageFlags[languageCode];
             }
+
+            return srcImg;
         },
-
-        
-    },
-
-    computed: {
         calcVote() {
-           return Math.trunc(this.decimalNumber / 2)
+           return Math.ceil(this.itemCarousel.vote / 2)
         }
     },
-
-    created() {
-        this.getImgFlags()
-    }
 
 }
 
@@ -59,26 +48,27 @@ export default {
     <div class="carousel">
         <div class="container-car" >
             <div class="row">
-                <img class="img-car" :src=" itemCarousel[currentIndex].imgBack " alt=""/>
+                <img class="img-car" :src=" itemCarousel.imgBack " alt=""/>
                 <div class="info-car">
                     <ul>
                         <li>
                             Titolo:
-                            <div class="information">{{ itemCarousel[currentIndex].title }}</div>
+                            <div class="information">{{ itemCarousel.title }}</div>
                         </li>
                         <li>
                             Titolo originale:
-                            <div class="information">{{ itemCarousel[currentIndex].originalTitle }}</div>
+                            <div class="information">{{ itemCarousel.originalTitle }}</div>
                         </li>
                         <li>
                             Lingua:
-                            <img class="img-flags" :src="srcImg" alt="">
-                            <div class="information">{{ itemCarousel[currentIndex].language }}</div>
+                            <img class="img-flags" :src="getImgFlags" alt="">
+                            <div class="information">{{ itemCarousel.language }}</div>
                         </li>
                         <li>
                             <!-- Voto:
                             <div class="information">{{ itemCarousel[currentIndex].vote }}</div> -->
-                        <li v-if=" calcVote > 0" class="star-vote" >
+                        </li>
+                        <li class="star-vote" >
                             Voto:
                             <div class="information">
                                 <span class="star-icon" v-for="item in calcVote" >&starf;</span>
@@ -86,11 +76,11 @@ export default {
                             </div>
                             
                         </li>
-                        <li v-else>
+                        <!-- <li v-else>
                             Voto:
                             <span class="information">nessun voto</span>
-                        </li>
-                        </li>
+                        </li> -->
+                        
                     </ul>
                 </div>
             </div>
@@ -144,6 +134,14 @@ padding-top: 30px;
         }
 
     }
+}
+
+.star-icon {
+    font-size: 20px;
+}
+
+.star-vote {
+    display: flex;
 }
 
 .img-flags {
