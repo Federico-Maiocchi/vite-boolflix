@@ -15,19 +15,44 @@ export default {
             heroImg: [
                 {
                     img:"/hero-img/hero1.jpeg",
+                    imgBack: '/hero-img/hero1b.jpeg',
+                    title: 'Uncharted',
+                    originalTitle: 'Uncharted',
+                    language: 'it',
+                    vote: '7.8',
                     
                 },
                 {
                     img:"/hero-img/hero2.jpeg",
+                    imgBack: '/hero-img/hero2b.jpeg',
+                    title: 'Joker',
+                    originalTitle: 'Joker',
+                    language: 'en',
+                    vote: '8.6',
                 },
                 {
                     img:"/hero-img/hero3.jpeg",
+                    imgBack: '/hero-img/hero3b.jpg',
+                    title: 'Hypnotic',
+                    originalTitle: 'Hypnotic',
+                    language: 'it',
+                    vote: '6.3',
                 },
                 {
                     img:"/hero-img/hero4.jpeg",
+                    imgBack: '/hero-img/hero4b.jpg',
+                    title: '2012',
+                    originalTitle: '2012',
+                    language: 'es',
+                    vote: '5.5',
                 },
                 {
                     img:"/hero-img/hero5.jpeg",
+                    imgBack: '/hero-img/hero5b.jpg',
+                    title: 'Avengers: Endgame',
+                    originalTitle: 'Avengers: Endgame',
+                    language: 'en',
+                    vote: '10',
                 },
     
             ],
@@ -96,19 +121,33 @@ export default {
                     :itemHero="heroFilm"/>
                 <div class="next" @click="nextClick()">&#8250;</div>
             </div>
-            <!-- <div class="carousel">
+            <div class="carousel">
                 <div class="container-car" >
                     <div class="row">
-                        <figure>
-                            <img class="img-car" src='/hero-img/hero1b.jpeg' alt=""/>
-                        </figure>
-                        <div class="text">
-                            <h3>titolo</h3>
-                            <p>descrizione</p>
+                        <img class="img-car" :src=" heroImg[currentIndex].imgBack " alt=""/>
+                        <div class="info-car">
+                            <ul>
+                                <li>
+                                    Titolo:
+                                    <div class="information">{{ heroImg[currentIndex].title }}</div>
+                                </li>
+                                <li>
+                                    Titolo originale:
+                                    <div class="information">{{ heroImg[currentIndex].originalTitle }}</div>
+                                </li>
+                                <li>
+                                    Lingua:
+                                    <div class="information">{{ heroImg[currentIndex].language }}</div>
+                                </li>
+                                <li>
+                                    Voto:
+                                    <div class="information">{{ heroImg[currentIndex].vote }}</div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
     <div class="container-small">
@@ -147,18 +186,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-
-
-.carousel {
-        padding-top: 30px;
-
-        .container-car {
-            max-width: 600px;
-            margin: 0 auto;
-
-        }
-       
-    }
 
 
 
@@ -214,6 +241,53 @@ export default {
 
         .d-none {
             display: none;
+        }
+
+        .carousel {
+        padding-top: 30px;
+
+            .container-car {
+                max-width: 800px;
+                // height: 400px;
+                margin: 0 auto;
+                border: 3px solid black;
+                
+
+                .row {
+                    justify-content: flex-start;
+                    height: 100%;
+
+                    .img-car {
+                        width: 520px;
+                        height: 350px;
+                        object-fit: cover;
+                    }
+
+                    .info-car {
+                        flex-grow: 1;
+                        background-color: black;
+                        padding: 5px;
+                        
+
+                        li {
+                            padding-top: 5px;
+                            font-weight: 900;
+                            font-size: 24px;
+                            color: orange;
+
+                            .information {
+                                font-weight: 300;
+                                font-size: 22px;
+                                color: white;
+                            }
+                        }
+
+                    }
+                }
+
+
+            }
+       
         }
 
     }
